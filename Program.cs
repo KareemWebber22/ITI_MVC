@@ -16,11 +16,6 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-builder.Services.AddDbContext<ITIContext>(options =>
-    options.UseOracle("Data Source=localhost:1521/met;User ID=KAREEM;Password=KAREEM")
-           .UseSnakeCaseNamingConvention());
-
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
