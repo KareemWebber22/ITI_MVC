@@ -1,5 +1,7 @@
 ﻿using ITI_MVC.Models;
+using ITI_MVC.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ITI_MVC.Controllers
 {
@@ -26,10 +28,43 @@ namespace ITI_MVC.Controllers
             ViewData["Msg"] = msg;
             ViewData["Temp"] = temp;
             ViewData["Branches"] = branches;
-            ViewData["Color"] = "Blue";
-            ViewBag.Color = "Red";
+            ViewData["Color1"] = "Blue";
+            ViewBag.Color2 = "Red";
 
             return View("Details", EmpModel);
+        }
+
+        public IActionResult DetailsVM(int id)
+        {
+            Employee EmpModelVM = context.Employee
+                .Include(e => e.Dept)
+                .FirstOrDefault(e => e.Id == id);
+
+            List<string> branches = new List<string>();
+            branches.Add("Ismailia");
+            branches.Add("Portsaid");
+            branches.Add("Cairo");
+
+            //Declare viewmodel
+            Emp_Dept_Color_Temp_Msg_BranchesViewModel EmpVM = 
+                new Emp_Dept_Color_Temp_Msg_BranchesViewModel();
+            //Mapping
+            EmpVM.EmpName = EmpModelVM.Name;
+            EmpVM.DeptName = EmpModelVM.Dept.DepartmentName;
+            EmpVM.Color = "Red";
+            EmpVM.Temp = 35;
+            EmpVM.Msg = "Hello From VM";
+            EmpVM.Branches = branches;
+
+            return View("DetailsVM", EmpVM);//Emp_Dept_Color_Temp_Msg_BranchesViewModel
+        }
+
+        public IActionResult AllEmpDetails()
+        {
+            Employee AllEmps = context.Employee
+                .SingleOrDefault(e => e.Id == 3);
+
+            return View("AllEmpDetails", AllEmps);
         }
     }
 }
