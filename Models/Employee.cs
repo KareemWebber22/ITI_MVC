@@ -9,11 +9,11 @@ namespace ITI_MVC.Models
         public int Salary { get; set; }
         public string JobTitle { get; set; }
         public string ImageURL { get; set; }
-        public string Address { get; set; }
+        public string? Address { get; set; }
 
-        [ForeignKey("Department")]
-        public int DepartmentID { get; set; }
+        [ForeignKey("Dept")]
+        public int DeptID { get; set; }
 
-        public Department Department { get; set; }//DepartmentID
+        public Department Dept { get; set; }//DepartmentID
     }
 }

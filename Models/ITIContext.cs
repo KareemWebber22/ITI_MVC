@@ -15,8 +15,7 @@ namespace ITI_MVC.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseOracle
-                ("Data Source=met;User ID=KAREEM;Password=KAREEM");
+            optionsBuilder.UseOracle("Data Source=localhost:1521/met;User ID=KAREEM;Password=KAREEM");
             base.OnConfiguring(optionsBuilder);
         }
     }

@@ -1,3 +1,6 @@
+using ITI_MVC.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -12,6 +15,11 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+builder.Services.AddDbContext<ITIContext>(options =>
+    options.UseOracle("Data Source=localhost:1521/met;User ID=KAREEM;Password=KAREEM")
+           .UseSnakeCaseNamingConvention());
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
