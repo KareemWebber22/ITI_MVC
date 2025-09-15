@@ -8,7 +8,7 @@ namespace ITI_MVC.Models
         public string Name { get; set; }
         public int Salary { get; set; }
         public string JobTitle { get; set; }
-        public string ImageURL { get; set; }
+        public string? ImageURL { get; set; }
         public string? Address { get; set; }
 
         [ForeignKey("Dept")]

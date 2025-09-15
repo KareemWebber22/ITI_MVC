@@ -33,7 +33,7 @@ namespace ITI_MVC.Migrations
                     Name = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
                     Salary = table.Column<int>(type: "NUMBER(10)", nullable: false),
                     JobTitle = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
-                    ImageURL = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    ImageURL = table.Column<string>(type: "NVARCHAR2(2000)", nullable: true),
                     Address = table.Column<string>(type: "NVARCHAR2(2000)", nullable: true),
                     DeptID = table.Column<int>(type: "NUMBER(10)", nullable: false)
                 },
