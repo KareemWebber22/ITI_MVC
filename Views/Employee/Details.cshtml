@@ -1,0 +1,19 @@
+﻿@model Employee
+@{
+    ViewData["Title"] = "Employee Details";
+}
+
+<h1>Employee Details</h1> 
+
+<h2>@Model.Name</h2>
+<h2>@ViewData["Msg"]</h2>
+<h2>@ViewData["Temp"]</h2>
+<h2>@(ViewBag.Temp - 10)</h2>
+<h2>@ViewData["Branches"]</h2> 
+
+<select class="form form-control">
+    @foreach(var item in ViewBag.Branches)
+    {
+        <option>@item</option>
+    }
+</select>
