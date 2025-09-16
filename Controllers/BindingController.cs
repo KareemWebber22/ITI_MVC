@@ -10,7 +10,7 @@ namespace ITI_MVC.Controllers
         //Binding/TestPrimitive?name=ahmed&age=12&id=10&color=red&color=blue
         //<form action= "Binding/TestPrimitive" method="get">
         //    <input type="text" name="name">
-        //    <inout type="text" name="age">
+        //    <input type="text" name="age">
 
         public IActionResult TestPrimitive(string name, int age, int id, string[] color)
         {
