@@ -1,6 +1,7 @@
 ﻿using ITI_MVC.Models;
 using ITI_MVC.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.Operations;
 using Microsoft.EntityFrameworkCore;
 
 namespace ITI_MVC.Controllers
@@ -12,6 +13,36 @@ namespace ITI_MVC.Controllers
         public EmployeeController()
         {
             
+        }
+
+        public IActionResult EmployeesList()
+        {
+            return View("EmployeesList", context.Employee.ToList());
+        }
+
+        //Handle Link
+        public IActionResult Edit(int id)
+        {
+            Employee EmpModel = context.Employee.FirstOrDefault(e=>e.Id==id);
+            return View("Edit", EmpModel);
+        }
+
+        [HttpPost]
+        public IActionResult SaveEdit(Employee employeeFromRequest, int id)
+        {
+            if (employeeFromRequest.Name != null)
+            {
+                  Employee empFromDB = context.Employee.FirstOrDefault(e => e.Id == id);
+                  empFromDB.Name = employeeFromRequest.Name;
+                  empFromDB.Address = employeeFromRequest.Address;
+                  empFromDB.Salary = employeeFromRequest.Salary;
+                  empFromDB.DeptID = employeeFromRequest.DeptID;
+                  empFromDB.ImageURL = employeeFromRequest.ImageURL;
+                  empFromDB.JobTitle = employeeFromRequest.JobTitle;
+                  context.SaveChanges();
+                  return RedirectToAction("EmployeesList");
+            }
+            return View("Edit", employeeFromRequest);
         }
 
         public IActionResult Details(int id)

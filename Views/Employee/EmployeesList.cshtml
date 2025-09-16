@@ -1,0 +1,25 @@
+﻿@model List<Employee>
+@{
+    ViewData["Title"] = "EmployeesList";
+}
+
+<h1>EmployeesList</h1>
+
+<table class="table table-hover table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Salary</th>
+        <th></th>
+    </tr>
+    
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Id</td>
+            <td>@item.Salary</td>
+            <td><a style="margin-top:10px" href="/Employee/Edit/@item.Id">Edit</a></td>
+        </tr>
+    }
+</table>
